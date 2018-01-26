@@ -8,15 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name="order_line")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderLine {
 
 	@Id
 	private Long id;
 	
 	@Column(name="product_id")
-	private Integer productId;
+	private Long productId;
 
 	@ManyToOne
 	private Order order;
@@ -31,7 +38,7 @@ public class OrderLine {
 		return this.id;
 	}
 	
-	public Integer getProductId() {
+	public Long getProductId() {
 		return this.productId;
 	}
 	

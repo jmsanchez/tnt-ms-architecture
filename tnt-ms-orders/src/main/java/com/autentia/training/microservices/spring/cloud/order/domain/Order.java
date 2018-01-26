@@ -9,8 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name="orders")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Order {
 
 	@Id

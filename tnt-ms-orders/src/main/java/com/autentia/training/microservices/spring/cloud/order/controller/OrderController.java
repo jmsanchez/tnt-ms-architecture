@@ -12,7 +12,6 @@ import com.autentia.training.microservices.spring.cloud.order.domain.Order;
 import com.autentia.training.microservices.spring.cloud.order.repository.OrderRepository;
 import com.autentia.training.microservices.spring.cloud.order.vo.OrderLineResource;
 import com.autentia.training.microservices.spring.cloud.order.vo.OrderResource;
-import com.autentia.training.microservices.spring.cloud.product.consumer.ProductConsumer;
 
 @RestController
 public class OrderController {
@@ -20,25 +19,25 @@ public class OrderController {
 	@Autowired
 	private OrderRepository productRepository;
 	
-	@Autowired
-	private ProductConsumer productConsumer;
-
 	@GetMapping("")
 	public List<OrderResource> findAll() {
-		return this.productRepository.findAll().stream().map(order -> mapOrderResource(order))
+		return this.productRepository.findAll().stream().map(order -> mapToRessource(order))
 				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/{id}")
 	public OrderResource findById(@PathVariable(name="id") long id) {
-		return mapOrderResource(this.productRepository.findOne(id));
+		return mapToRessource(this.productRepository.findOne(id));
 	}
 
-	private OrderResource mapOrderResource(Order order) {
+	private OrderResource mapToRessource(Order order) {
+		
 		final List<OrderLineResource> lines = order.getLines().stream()
-				.map(line -> OrderLineResource.builder().product(productConsumer.findById(line.getProductId())).price(line.getPrice()).quantity(line.getQuantity()).build())
+				.map(line -> OrderLineResource.builder().orderLine(line).build())
 				.collect(Collectors.toList());
-		return OrderResource.builder().id(order.getId()).createdAt(order.getCreatedAt()).lines(lines).build();
+		
+		final OrderResource result = OrderResource.builder().orderId(order.getId()).createdAt(order.getCreatedAt()).lines(lines).build();
+		return result;
 	}
 
 }

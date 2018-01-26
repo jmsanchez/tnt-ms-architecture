@@ -3,26 +3,31 @@ package com.autentia.training.microservices.spring.cloud.order.vo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.hateoas.ResourceSupport;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+
+import com.autentia.training.microservices.spring.cloud.order.controller.OrderController;
+
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
-public class OrderResource {
+@Getter
+public class OrderResource extends ResourceSupport{
 
-	private Long id;
+	private Long orderId;
 	
 	private LocalDateTime createdAt;
 
 	private List<OrderLineResource> lines;
 	
-	public Long getId() {
-		return this.id;
-	}
-	
-	public LocalDateTime getCreatedAt() {
-		return this.createdAt;
+	@Builder
+	public OrderResource(Long orderId, LocalDateTime createdAt, List<OrderLineResource> lines) {
+		super();
+		this.orderId = orderId;
+		this.createdAt = createdAt;
+		this.lines = lines;
+		add(ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(OrderController.class).findById(orderId)).withSelfRel());
 	}
 
-	public List<OrderLineResource> getLines() {
-		return lines;
-	}
 }
