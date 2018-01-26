@@ -1,0 +1,4 @@
+insert into product (code, ean, name, description) values (54, '8412866002982','Café de tueste natural','Envase 1000g');
+insert into product (code, ean, name, description) values (55, '8412866003019','Cacao','Envase 1000g');
+insert into product (code, ean, name, description) values (71, '8412866998414','Ebo Latte','El sabor tradicional y genuino de nuestro café 100% arábica. Perfecto para los más cafeteros. Ideal para consumir a 4*C. Sin colorantes ni aromas artificiales.');
+insert into product (code, ean, name, description) values (79, '1841286600264','Ebo Latte sin lactosa','El sabor tradicional y genuino, rico y suave de nuestro café de siempre acompañado de leche sin lactosa 0% materia grasa. Café 100% arábica. Perfecto para los más cafeteros. Ideal para consumir a 4*C. Sin colorantes ni aromas artificiales. Sin azúcares añadidos. Con edulcorantes.');

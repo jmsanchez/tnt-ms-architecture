@@ -1,0 +1,6 @@
+# disabling structural services
+spring.cloud.service-registry.auto-registration.enabled: false
+spring.zipkin.enabled: false
+
+# disabling endpoints security
+management.security.enabled: false

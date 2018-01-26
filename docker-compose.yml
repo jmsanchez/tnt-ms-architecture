@@ -1,0 +1,41 @@
+config:
+  image:  tnt-ms-architecture/tnt-ms-config
+  ports:
+    - "8888:8888"
+    
+eureka:
+  image:  tnt-ms-architecture/tnt-ms-eureka
+  hostname: discovery
+  ports:
+    - "8761:8761"
+
+zuul:
+  image:  tnt-ms-architecture/tnt-ms-zuul
+  ports:
+    - "8090:8090"
+    
+hystrix:
+  image:  tnt-ms-architecture/tnt-ms-hystrix
+  ports:
+    - "8030:8030"
+    
+zipkin:
+  image:  tnt-ms-architecture/tnt-ms-zipkin
+  ports:
+    - "9411:9411"
+    
+ms-catalog-1:
+  image:  tnt-ms-architecture/tnt-ms-catalog
+  ports:
+    - "8050:8081"
+    
+ms-catalog-2:
+  image:  tnt-ms-architecture/tnt-ms-catalog
+  ports:
+    - "8051:8081"
+
+ms-orders-1:
+  image:  tnt-ms-architecture/tnt-ms-orders
+  ports:
+    - "8060:8080"
+

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: tnt-ms-hystrix
+  cloud:
+    config:
+      discovery:
+        enabled: false

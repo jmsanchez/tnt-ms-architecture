@@ -1,0 +1,8 @@
+server:
+  port: 8030
+      
+turbine:
+  aggregator:
+    clusterConfig: DEFAULT
+  appConfig: tnt-ms-zuul, tnt-ms-catalog, tnt-ms-orders
+  clusterNameExpression: new String("DEFAULT")

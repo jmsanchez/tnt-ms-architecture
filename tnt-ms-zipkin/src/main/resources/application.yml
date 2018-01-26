@@ -1,0 +1,11 @@
+          
+server:
+  port: 9411
+
+management:
+  security:
+    enabled: false
+    
+logging:
+  level:
+    root: INFO
