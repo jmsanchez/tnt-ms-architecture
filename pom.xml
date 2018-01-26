@@ -16,6 +16,7 @@
 		<module>tnt-ms-orders</module>
 		<module>tnt-ms-hystrix</module>
 		<module>tnt-ms-zipkin</module>
+		<module>tnt-ms-admin</module>
 	</modules>
 
 	<parent>

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: tnt-ms-admin
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: jmsanchez
+Implementation-Vendor-Id: com.autentia.training.microservices.spring.c
+ loud
+Build-Jdk: 1.8.0_25
+Implementation-URL: http://projects.spring.io/spring-boot/tnt-ms-archi
+ tecture/tnt-ms-admin/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

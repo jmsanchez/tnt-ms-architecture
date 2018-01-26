@@ -1,0 +1,6 @@
+server:
+  port: 8085
+
+eureka:
+  instance:
+    hostname: adminserver
