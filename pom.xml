@@ -13,6 +13,8 @@
 		<module>tnt-ms-eureka</module>
 		<module>tnt-ms-zuul</module>
 		<module>tnt-ms-catalog</module>
+		<module>tnt-ms-catalog-sidecar</module>
+		<module>tnt-ms-catalog-js</module>
 		<module>tnt-ms-orders</module>
 		<module>tnt-ms-hystrix</module>
 		<module>tnt-ms-zipkin</module>

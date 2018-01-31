@@ -1,0 +1,26 @@
+[
+{
+"code": 54,
+"ean": "8412866002982",
+"name": "Café de tueste natural",
+"description": "Envase 1000g"
+},
+{
+"code": 55,
+"ean": "8412866003019",
+"name": "Cacao",
+"description": "Envase 1000g"
+},
+{
+"code": 71,
+"ean": "8412866998414",
+"name": "Ebo Latte",
+"description": "El sabor tradicional y genuino de nuestro café 100% arábica. Perfecto para los más cafeteros. Ideal para consumir a 4*C. Sin colorantes ni aromas artificiales."
+},
+{
+"code": 79,
+"ean": "1841286600264",
+"name": "Ebo Latte sin lactosa",
+"description": "El sabor tradicional y genuino, rico y suave de nuestro café de siempre acompañado de leche sin lactosa 0% materia grasa. Café 100% arábica. Perfecto para los más cafeteros. Ideal para consumir a 4*C. Sin colorantes ni aromas artificiales. Sin azúcares añadidos. Con edulcorantes."
+}
+]

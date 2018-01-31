@@ -1,0 +1,13 @@
+server:
+  port: 8082
+
+sidecar:
+  port: ${port:3000}
+  health-uri: http://localhost:${sidecar.port}/${health-uri:health.json}
+  home-page-uri: http://localhost:${sidecar.port}/
+  
+management:
+  security:
+    enabled: false
+
+

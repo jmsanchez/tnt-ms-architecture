@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>tnt-ms-catalog-js</artifactId>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.autentia.training.microservices.spring.cloud</groupId>
+		<artifactId>tnt-ms-architecture</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<build>
+	<plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>exec-npm-install</id>
+                    <phase>generate-sources</phase>
+                    <configuration>
+                        <workingDirectory>${project.basedir}/src/main/resources</workingDirectory>
+                        <executable>npm</executable>
+                        <arguments>
+                            <argument>install</argument>
+                        </arguments>
+                    </configuration>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>exec-npm-run-tsc</id>
+                    <phase>generate-sources</phase>
+                    <configuration>
+                        <workingDirectory>${project.basedir}/src/main/resources</workingDirectory>
+                        <executable>npm</executable>
+                        <arguments>
+                            <argument>run</argument>
+                            <argument>tsc</argument>
+                        </arguments>
+                    </configuration>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+	</plugins>
+	</build>
+</project>
