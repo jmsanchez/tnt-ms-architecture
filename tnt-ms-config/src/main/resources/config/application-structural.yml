@@ -4,6 +4,7 @@ eureka:
       defaultZone: http://${DISCOVERY_SERVER_HOST:localhost}:${DISCOVERY_SERVER_PORT:8761}/eureka/
   instance:
     preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
 
 spring:
    zipkin:
