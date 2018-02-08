@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8083
 
 spring:
   jpa:
@@ -15,7 +15,7 @@ spring:
   cloud:
     stream:
       bindings:
-        input:
+        output:
           destination: queue.orders.events
           binder: local_rabbit
       binders:
@@ -29,18 +29,18 @@ spring:
                 username: guest
                 password: guest
                 virtual-host: /
+                
+                
 logging:
   level:
     root: INFO
-    org.hibernate: INFO
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-    com.autentia.training.microservices.spring.cloud: INFO
 
 management:
   security:
     enabled: false
+  health:
+    binders:
+       enabled: true
 
 spring.jackson.serialization.WRITE_DATES_AS_TIMESTAMPS: false
-
 

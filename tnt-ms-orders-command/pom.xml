@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>tnt-ms-orders</artifactId>
+	<artifactId>tnt-ms-orders-command</artifactId>
 	<packaging>jar</packaging>
 
 	<parent>
@@ -25,13 +25,13 @@
 	</dependencyManagement>
 	
 	<dependencies>
-		
+
 		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<!-- spring cloud -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -42,26 +42,26 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
-		
+
 		<dependency>
-		      <groupId>org.springframework.cloud</groupId>
-		      <artifactId>spring-cloud-starter-hystrix</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
 		</dependency>
 
 		<!-- spring cloud monitoring -->
 		<dependency>
-		     <groupId>org.springframework.cloud</groupId>
-		     <artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>		
-		
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
 		<dependency>
-		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-zipkin</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 
 		<!-- repository -->
@@ -85,13 +85,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
-		<!-- utilities -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
-
 		<!-- messaging -->
 
 		<dependency>
@@ -102,26 +95,25 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>
-		
+
+		<!-- utilities -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
 		<!-- admin -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+
 		<!-- testing -->
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-stream-test-support</artifactId>
 		    <scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.awaitility</groupId>
-			<artifactId>awaitility-proxy</artifactId>
-			<version>3.0.0</version>
-			<scope>test</scope>
-		</dependency>
-		
+
 	</dependencies>
 </project>

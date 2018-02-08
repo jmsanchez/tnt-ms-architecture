@@ -18,6 +18,10 @@ public class Product {
 
 	@Column
 	private String description;
+	
+
+	@Column
+	private Long quantity;
 
 	public Integer getCode() {
 		return this.code;
@@ -33,6 +37,10 @@ public class Product {
 
 	public String getDescription() {
 		return this.description;
+	}
+	
+	public Long getQuantity() {
+		return quantity;
 	}
 
 }
