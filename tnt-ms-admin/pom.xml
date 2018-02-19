@@ -16,7 +16,7 @@
 		<!-- cloud config -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -27,13 +27,13 @@
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-server</artifactId>
-			<version>1.5.6</version>
+			<version>1.5.7</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-server-ui</artifactId>
-			<version>1.5.6</version>
+			<version>1.5.7</version>
 		</dependency>
 
 		<!-- admin -->

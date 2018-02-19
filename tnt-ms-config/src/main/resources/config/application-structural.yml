@@ -17,3 +17,6 @@ spring:
 management:
   security:
     enabled: false
+  endpoints:
+    web:
+      expose: '*'

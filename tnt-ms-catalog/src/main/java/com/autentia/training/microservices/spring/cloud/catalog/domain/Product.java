@@ -1,22 +1,21 @@
 package com.autentia.training.microservices.spring.cloud.catalog.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import lombok.Builder;
+
+@Document
+@Builder
 public class Product {
 
 	@Id
 	private Integer code;
 	
-	@Column
 	private String ean;
 
-	@Column
 	private String name;
 
-	@Column
 	private String description;
 
 	public Integer getCode() {

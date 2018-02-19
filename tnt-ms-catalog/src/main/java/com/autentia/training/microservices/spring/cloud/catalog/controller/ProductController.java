@@ -1,7 +1,5 @@
 package com.autentia.training.microservices.spring.cloud.catalog.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -12,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.autentia.training.microservices.spring.cloud.catalog.domain.Product;
 import com.autentia.training.microservices.spring.cloud.catalog.repository.ProductRepository;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 
 
 @RestController
@@ -21,23 +22,18 @@ public class ProductController {
   private DiscoveryClient discoveryClient;
   
   @Autowired
-  private ProductRepository productRepository;
+  private ProductRepository repository;
 
 
   @GetMapping("/products")
-  public List<Product> findAll() {
-    return this.productRepository.findAll();
+  public Flux<Product> findAll() {
+    return this.repository.findAll();
   }
   
   @GetMapping("/products/{id}")
-  public Product findById(@PathVariable Integer id) {
-    return this.productRepository.findOne(id);
-  }
-
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
+  public Mono<Product> findById(@PathVariable Integer id) {
+		return repository.findById(id)
+				.map(p -> Product.builder().code(p.getCode()).description(p.getDescription()).ean(p.getEan()).name(p.getEan()).build());
   }
   
 }

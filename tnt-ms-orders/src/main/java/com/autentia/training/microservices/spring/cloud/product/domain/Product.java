@@ -2,10 +2,12 @@ package com.autentia.training.microservices.spring.cloud.product.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
+@Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class Product {
 
@@ -15,16 +17,5 @@ public class Product {
 
 	private String name;
 
-	public Integer getCode() {
-		return this.code;
-	}
-	
-	public String getEan() {
-		return this.ean;
-	}
-
-	public String getName() {
-		return this.name;
-	}
 
 }
