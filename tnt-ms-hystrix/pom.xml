@@ -35,6 +35,11 @@
             </exclusions>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
 		<!-- admin -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

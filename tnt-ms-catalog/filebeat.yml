@@ -1,0 +1,44 @@
+---
+
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/TNTMSCatalog/log/*.log
+
+  encoding: plain
+
+  fields_under_root: true
+  fields:
+    type: log
+    ms_application: catalog
+
+  multiline.pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+  multiline.negate: true
+  multiline.match: after
+
+  scan_frequency: 10s
+  close_inactive: 24h
+  ignore_older: 48h
+
+- type: log
+  enabled: true
+  paths:
+    - /var/log/TNTMSCatalog/business/*.log
+  
+  encoding: plain
+
+  fields_under_root: true
+  fields:
+    type: business
+    ms_application: catalog
+  
+  scan_frequency: 10s
+  close_inactive: 24h
+  ignore_older: 48h
+
+output.logstash:
+    hosts: ["logstash:5044"]
+
+    worker: 2
+    compression_level: 3

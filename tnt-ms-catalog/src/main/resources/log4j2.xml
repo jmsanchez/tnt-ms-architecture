@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="WARN">
+    <Properties>
+        <Property name="fileLogDir">/var/log/TNTMSCatalog/</Property>
+        <Property name="fileSizeRolling">10 MB</Property>
+        <Property name="logPattern">%d{ISO8601}{GMT}Z %p %t %c %X{REMOTE_IP} %m%n</Property>
+        <Property name="businessPattern">%d{ISO8601}{GMT}Z %X{REMOTE_IP} %m%n</Property>
+        <Property name="maxFileLogDuration">5d</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- TRAZAS DE AUDITORÍA -->
+        <RollingRandomAccessFile name="BusinessRoutingAppender"
+                                 fileName="${fileLogDir}/business/business.log"
+                                 filePattern="${fileLogDir}/business/business-%d{yyyy-MM-dd-HH}-%i.log">
+            <Filters>
+                <MarkerFilter marker="BUSINESS" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="${businessPattern}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="${fileSizeRolling}" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${fileLogDir}" maxDepth="3">
+                    <IfFileName glob="*/business/business-*.log" />
+                    <IfLastModified age="${maxFileLogDuration}" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+
+        <!-- TRAZAS DE SISTEMA -->
+        <RollingRandomAccessFile name="LogRoutingAppender"
+                                 fileName="${fileLogDir}/log/traces.log"
+                                 filePattern="${fileLogDir}/log/traces-%d{yyyy-MM-dd-HH}-%i.log">
+            <Filters>
+                <MarkerFilter marker="LOG" onMatch="DENY" onMismatch="ACCEPT" />
+            </Filters>
+            <PatternLayout pattern="${logPattern}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="${fileSizeRolling}" />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${fileLogDir}" maxDepth="3">
+                    <IfFileName glob="*/log/traces-*.log" />
+                    <IfLastModified age="${maxFileLogDuration}" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+        <Async name="Async">
+            <AppenderRef ref="BusinessRoutingAppender" />
+            <AppenderRef ref="LogRoutingAppender" />
+        </Async>
+
+    </Appenders>
+
+    <Loggers>
+    
+        <Logger name="com.autentia.training.microservices.spring.cloud.catalog" level="DEBUG" additivity="false">
+            <AppenderRef ref="Async" />
+        </Logger>
+
+        <Root level="DEBUG">
+            <AppenderRef ref="Async" />
+        </Root>
+
+    </Loggers>
+
+</Configuration>

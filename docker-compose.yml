@@ -1,41 +1,236 @@
-config:
-  image:  tnt-ms-architecture/tnt-ms-config
-  ports:
-    - "8888:8888"
-    
-eureka:
-  image:  tnt-ms-architecture/tnt-ms-eureka
-  hostname: discovery
-  ports:
-    - "8761:8761"
+---
 
-zuul:
-  image:  tnt-ms-architecture/tnt-ms-zuul
-  ports:
-    - "8090:8090"
-    
-hystrix:
-  image:  tnt-ms-architecture/tnt-ms-hystrix
-  ports:
-    - "8030:8030"
-    
-zipkin:
-  image:  tnt-ms-architecture/tnt-ms-zipkin
-  ports:
-    - "9411:9411"
-    
-ms-catalog-1:
-  image:  tnt-ms-architecture/tnt-ms-catalog
-  ports:
-    - "8050:8081"
-    
-ms-catalog-2:
-  image:  tnt-ms-architecture/tnt-ms-catalog
-  ports:
-    - "8051:8081"
+version: '3.5'
 
-ms-orders-1:
-  image:  tnt-ms-architecture/tnt-ms-orders
-  ports:
-    - "8060:8080"
+services:
+#  config-server:
+#    image: tnt-ms-architecture/tnt-ms-config
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8888:8888"
+#      
+#  eureka-server:
+#    image: tnt-ms-architecture/tnt-ms-eureka
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#      - CONFIG_SERVER_PORT=${CONFIG_SERVER_PORT}
+#    hostname: discovery
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8761:8761"
+#    depends_on:
+#      - "config-server"
+#
+#  zuul:
+#    image: tnt-ms-architecture/tnt-ms-zuul
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#      - CONFIG_SERVER_PORT=${CONFIG_SERVER_PORT}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8090:8090"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#            
+#  hystrix-dashboard:
+#    image: tnt-ms-architecture/tnt-ms-hystrix
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8030:8030"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#      - "zuul"
+#      
+#  zipkin-dashboard:
+#    image: tnt-ms-architecture/tnt-ms-zipkin
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "9411:9411"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#      - "zuul"
+#      
+#  ms-catalog-1:
+#    image: tnt-ms-architecture/tnt-ms-catalog
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#      - "zuul"
+#      
+#  ms-catalog-2:
+#    image: tnt-ms-architecture/tnt-ms-catalog
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8082:8081"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#      - "zuul"
+#
+#  ms-orders-1:
+#    image: tnt-ms-architecture/tnt-ms-orders
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '0.25'
+#          memory: 256M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 128M
+#    environment:
+#      - CONFIG_SERVER_HOST=${CONFIG_SERVER_HOST}
+#    networks:
+#      - tnt-ms-network
+#    ports:
+#      - "8060:8080"
+#    depends_on:
+#      - "config-server"
+#      - "eureka-server"
+#      - "zuul"
+  
+  # ELK services
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    container_name: elasticsearch${ELASTIC_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./elk-config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - tnt-ms-network
+    ports:
+      - "9200:9200"
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${ELASTIC_VERSION}
+    container_name: logstash${ELASTIC_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+    environment:
+      - ELASTIC_USER=${ELASTIC_USER}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./elk-config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./elk-config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    networks:
+      - tnt-ms-network
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
+    container_name: kibana${ELASTIC_VERSION}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+    environment:
+      - ELASTICSEARCH_USERNAME=${ELASTIC_USER}
+      - ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - ./elk-config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    networks:
+      - tnt-ms-network
+    depends_on:
+      - elasticsearch
+
+networks:
+  tnt-ms-network:
+    driver: bridge

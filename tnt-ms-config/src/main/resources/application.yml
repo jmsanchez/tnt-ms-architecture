@@ -18,4 +18,4 @@ management:
 logging:
   level:
     root: INFO
-    org.springframework.boot.context.config: TRACE
+    org.springframework.cloud.config.server: INFO

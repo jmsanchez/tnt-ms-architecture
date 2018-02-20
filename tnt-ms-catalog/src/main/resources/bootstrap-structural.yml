@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8888}
+      fail-fast: true
+      retry:
+        initial-interval: 5000
+        max-attempts: 6

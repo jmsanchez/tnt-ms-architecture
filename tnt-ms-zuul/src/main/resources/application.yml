@@ -1,3 +1,4 @@
+
 server:
   port: 8090
 
@@ -5,3 +6,7 @@ management:
   security:
     enabled: false
     
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.config.client: TRACE
